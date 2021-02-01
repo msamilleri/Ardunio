@@ -14,13 +14,46 @@ int echoin=10;
 //find the distance
 long duration;
 int distance;
-
+int Distancee;
 void setup() {
-  // put your setup code here, to run once:
-
+ Serial.begin(9600); //iletişim ayarı
+pinMode(red_light,OUTPUT);
+pinMode(green_light,OUTPUT);
+pinMode(blue_light,OUTPUT)
+pinMode(Motor_front_right,OUTPUT);
+pinMode(Motor_front_left,OUTPUT);
+pinMode(Motor_back_right,OUTPUT)
+pinMode(Motor_back_left,OUTPUT)
+pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+ 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  Distancee=fiind_distance();
+  Serial.print("Distance: ");
+Serial.println(distance);
 
+
+
+}
+void RGB_color(int red_light_value, int green_light_value, int blue_light_value)
+ {
+  analogWrite(red_light_pin, red_light_value);
+  analogWrite(green_light_pin, green_light_value);
+  analogWrite(blue_light_pin, blue_light_value);
+}
+int fiind_distance(){
+  digitalWrite(trigPin, LOW);
+delayMicroseconds(2);
+// Sets the trigPin on HIGH state for 10 micro seconds
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+// Reads the echoPin, returns the sound wave travel time in microseconds
+duration = pulseIn(echoPin, HIGH);
+// Calculating the distance
+return distance= duration*0.034/2;
+// Prints the distance on the Serial Monitor
 }
